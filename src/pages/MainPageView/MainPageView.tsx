@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { authorConfig } from 'table-configs';
-import { AuthorModel } from 'models';
+import { AuthorModel, RowData } from 'models';
 import { Breadcrumb, Table } from 'components';
 import { getAuthorsEndPoint } from 'endpoints';
 import { useGetEndPoint } from 'hooks';
@@ -10,15 +10,15 @@ export const MainPageView = () => {
   const authorsEndPoint = useGetEndPoint(getAuthorsEndPoint);
 
   const { data } = useQuery({
-    queryKey: ['bookData'],
-    queryFn: async (): Promise<AuthorModel[]> => {
+    queryKey: ['authorsKey'],
+    queryFn: async (): Promise<RowData[]> => {
       const result = fetch(authorsEndPoint);
       const res = await result;
       const data = await res.json().catch(() => ({}));
-      console.log(data);
+      //console.log(data);
 
       return data?.items.map((book: any, index: number) => {
-        console.log(book);
+        //console.log(book);
         const { volumeInfo } = book;
         const { title, publishedDate, printType, language, pageCount } =
           volumeInfo;
@@ -26,21 +26,13 @@ export const MainPageView = () => {
         const categories = volumeInfo?.categories?.[0] || 'not-given';
         const authors = volumeInfo?.authors?.[0] || 'not-given';
 
-        if (index === 3) {
-          return {
-            printType,
-            language,
-            pageCount,
-          };
-        }
-
         return {
           id: book.id,
           authors,
           title,
           publishedDate: publishedDate,
           categories,
-        };
+        } as AuthorModel;
       });
     },
   });

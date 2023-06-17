@@ -22,5 +22,6 @@ export const TableHeadStyled = styled.thead`
   tr {
     background-color: #362f4b;
     color: #ffffff;
+    box-shadow: 0 4px 2px -2px gray;
   }
 `;

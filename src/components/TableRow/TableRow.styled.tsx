@@ -14,3 +14,7 @@ export const TableRowStyled = styled.tr`
   }
   cursor: pointer;
 `;
+
+export const TdStyled = styled.td`
+  padding: 1rem 1.5rem;
+`;

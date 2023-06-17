@@ -5,3 +5,7 @@ export interface ColumnModel {
 export interface TableConfigModel {
   columns: ColumnModel[];
 }
+
+export interface RowData {
+  [key: string]: React.ReactNode;
+}

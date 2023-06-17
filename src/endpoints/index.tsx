@@ -1,2 +1,4 @@
 import { getAuthorsEndPoint } from './getAuthorsEndPoint';
-export { getAuthorsEndPoint };
+import { getBooksEndPoint } from './getBooksEndPoint';
+
+export { getAuthorsEndPoint, getBooksEndPoint };

@@ -1,9 +1,12 @@
-import { TableRowStyled } from 'components/TableRow/TableRow.styled';
-import { AuthorModel, TableConfigModel } from 'models';
+import { NestedTable } from 'components';
+import { TableRowStyled, TdStyled } from 'components/TableRow/TableRow.styled';
+import { TableConfigModel, RowData } from 'models';
+import { useState } from 'react';
+import { bookConfig } from 'table-configs';
 
 type TableRowProps = {
   tableConfig: TableConfigModel;
-  rowData: AuthorModel;
+  rowData: RowData;
 } & React.HTMLProps<HTMLTableRowElement>;
 
 export const TableRow = ({
@@ -12,16 +15,32 @@ export const TableRow = ({
   className,
 }: TableRowProps) => {
   const { columns } = tableConfig;
-  console.log(rowData);
+
+  const [showMoreInformation, setShowMoreInformation] = useState(false);
   return (
-    <TableRowStyled onClick={() => {}} className={className}>
-      {columns.map(column => {
-        return (
-          <td key={`${column.columnName}-td`}>
-            {rowData[column.columnName as keyof AuthorModel]}
-          </td>
-        );
-      })}
-    </TableRowStyled>
+    <>
+      <TableRowStyled
+        onClick={() => {
+          console.log('stala ptaka');
+          setShowMoreInformation(prev => !prev);
+        }}
+        className={className}
+      >
+        {columns.map(column => {
+          return (
+            <TdStyled key={`${column.columnName}-td`}>
+              {rowData[column.columnName]}
+            </TdStyled>
+          );
+        })}
+      </TableRowStyled>
+      {showMoreInformation && (
+        <NestedTable
+          tableConfig={bookConfig}
+          columnsLength={tableConfig.columns.length}
+          endPoint={'elo'}
+        />
+      )}
+    </>
   );
 };
