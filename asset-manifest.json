@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/table-task/static/js/main.cb04269b.js",
+    "static/js/787.73027930.chunk.js": "/table-task/static/js/787.73027930.chunk.js",
+    "index.html": "/table-task/index.html",
+    "main.cb04269b.js.map": "/table-task/static/js/main.cb04269b.js.map",
+    "787.73027930.chunk.js.map": "/table-task/static/js/787.73027930.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.cb04269b.js"
+  ]
+}
