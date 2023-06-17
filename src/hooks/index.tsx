@@ -1,0 +1,1 @@
+export { useGetEndPoint } from './useGetEndPoint';
