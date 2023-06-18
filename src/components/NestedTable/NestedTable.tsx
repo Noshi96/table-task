@@ -1,25 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
-import { TableHead, TableRow, TableRowStyled } from 'components';
 import { NestedTableStyled } from 'components/Table/Table.styled';
 import { getBooksEndPoint } from 'endpoints';
 import { useGetEndPoint } from 'hooks';
 import { BookModel, RowData, TableConfigModel } from 'models';
-import { TdStyled } from './NestedTable.styled';
+import { TableHeadStyled, TableRowStyled } from './NestedTable.styled';
 
 interface INestedTableProps {
   tableConfig: TableConfigModel;
   columnsLength: number;
   endPoint: string;
+  clickedRowHeight: number;
 }
 
 export const NestedTable = ({
   tableConfig,
   columnsLength,
   endPoint,
+  clickedRowHeight,
 }: INestedTableProps) => {
   const { columns } = tableConfig;
 
   const booksEndPoint = useGetEndPoint(getBooksEndPoint);
+  const clickedRowHeightRem = `${clickedRowHeight / 16}rem`;
 
   const { data, isSuccess } = useQuery({
     queryKey: ['booksKey'],
@@ -45,22 +47,26 @@ export const NestedTable = ({
 
   return isSuccess ? (
     <tr>
-      <TdStyled colSpan={columnsLength}>
+      <td colSpan={columnsLength}>
         <NestedTableStyled>
-          <TableHead columns={columns} />
+          <TableHeadStyled
+            columns={columns}
+            clickedRowHeightRem={clickedRowHeightRem}
+          />
           <tbody>
             {data.map(singleRowData => {
               return (
-                <TableRow
+                <TableRowStyled
                   key={`${singleRowData.page}`}
                   tableConfig={tableConfig}
                   rowData={singleRowData}
+                  clickedRowHeightRem={clickedRowHeightRem}
                 />
               );
             })}
           </tbody>
         </NestedTableStyled>
-      </TdStyled>
+      </td>
     </tr>
   ) : null;
 };

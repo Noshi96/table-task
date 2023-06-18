@@ -10,7 +10,7 @@ export const BreadcrumbContainerStyled = styled.div`
   width: 100%;
   color: #ffffff;
   z-index: 3;
-  background-color: transparent;
+  background: #9b7cde;
 `;
 
 export const BreadcrumbNavigationStyled = styled.nav`
