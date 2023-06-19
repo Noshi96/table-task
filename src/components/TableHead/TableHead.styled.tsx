@@ -12,6 +12,13 @@ export const TableHeadStyled = styled.thead`
     padding: 1.25rem 1.5rem;
   }
 
+  @media (max-width: 560px) {
+    td,
+    th {
+      padding: 1.25rem 0.5rem;
+    }
+  }
+
   tr:first-child th:first-child {
     border-top-left-radius: 10px;
   }

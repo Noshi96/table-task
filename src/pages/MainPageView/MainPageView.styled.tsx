@@ -10,6 +10,10 @@ export const PageContainerStyled = styled.div`
   flex-direction: column;
   padding: 0 2rem 2rem 2rem;
   background: #9b7cde;
+
+  @media (max-width: 560px) {
+    padding: 0 1rem 1rem 1rem;
+  }
 `;
 
 export const PageHeaderStyled = styled.h1`

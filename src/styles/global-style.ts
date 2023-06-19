@@ -51,6 +51,5 @@ export const AppStyled = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  min-width: 768px;
   height: 100%;
 `;

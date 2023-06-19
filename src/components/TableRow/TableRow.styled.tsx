@@ -17,4 +17,10 @@ export const TableRowStyled = styled.tr`
 
 export const TdStyled = styled.td`
   padding: 1rem 1.5rem;
+  @media (max-width: 560px) {
+    padding: 1rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

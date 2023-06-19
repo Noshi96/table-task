@@ -22,6 +22,7 @@ export const BreadcrumbListStyled = styled.ul`
   display: flex;
   gap: 1rem;
   position: relative;
+  flex-wrap: wrap;
 `;
 
 export const LiStyled = styled.li`
