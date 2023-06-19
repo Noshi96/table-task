@@ -1,6 +1,6 @@
 export const getAuthorsEndPoint = (): URL => {
   const authorsEndPoint = new URL(
-    `${process.env.REACT_APP_PUBLIC_GOOGLE_API_ENDPOINT}`,
+    `https://www.googleapis.com/books/v1/volumes`,
   );
   authorsEndPoint.searchParams.set('q', 'subject:Fiction');
   authorsEndPoint.searchParams.set('filter', 'paid-ebooks');

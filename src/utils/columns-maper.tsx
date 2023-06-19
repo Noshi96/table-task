@@ -10,6 +10,7 @@ export const columnsMapper = (columnName: string) => {
     title: 'Title',
     categories: 'Genre',
     isbn: 'ISBN',
+    publishedDate: 'Published date',
   };
 
   return mapper[columnName] || '';

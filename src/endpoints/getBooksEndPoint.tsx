@@ -1,9 +1,12 @@
 export const getBooksEndPoint = (authorName: string): string => {
-  const endpoint = `${
-    process.env.REACT_APP_PUBLIC_GOOGLE_API_ENDPOINT
-  }?q=inauthor:"${authorName.replaceAll(
-    ' ',
-    '+',
-  )}"&filter=paid-ebooks&maxResults=15&printType=books`;
-  return endpoint;
+  const booksEndPoint = new URL(`https://www.googleapis.com/books/v1/volumes`);
+  booksEndPoint.searchParams.set(
+    'q',
+    `inauthor:"${authorName.replaceAll(' ', '+')}"`,
+  );
+  booksEndPoint.searchParams.set('filter', 'paid-ebooks');
+  booksEndPoint.searchParams.set('maxResults', '15');
+  booksEndPoint.searchParams.set('printType', 'books');
+
+  return `${booksEndPoint}`;
 };

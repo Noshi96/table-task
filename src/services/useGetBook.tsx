@@ -18,10 +18,11 @@ export const useGetBook = (isbn: string) => {
       return data.totalItems !== 0
         ? data?.items.map((book: any) => {
             const { volumeInfo } = book;
-            const { industryIdentifiers } = volumeInfo;
+            const { industryIdentifiers, publishedDate } = volumeInfo;
 
             return {
               isbn: industryIdentifiers[0].identifier,
+              publishedDate,
             };
           })
         : [];
