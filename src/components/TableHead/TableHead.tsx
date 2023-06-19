@@ -1,4 +1,5 @@
 import { ColumnModel } from 'models';
+import { columnsMapper } from 'utils';
 import { TableHeadStyled } from './TableHead.styled';
 
 type TableHeadProps = {
@@ -10,7 +11,9 @@ export const TableHead = ({ columns, className }: TableHeadProps) => {
     <TableHeadStyled className={className}>
       <tr>
         {columns.map(column => {
-          return <th key={column.columnName}>{column.columnName}</th>;
+          return (
+            <th key={column.columnName}>{columnsMapper(column.columnName)}</th>
+          );
         })}
       </tr>
     </TableHeadStyled>

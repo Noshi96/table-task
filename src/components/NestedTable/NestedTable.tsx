@@ -21,7 +21,7 @@ export const NestedTable = ({
 }: INestedTableProps) => {
   const { columns } = tableConfig;
   const clickedRowHeightRem = `${clickedRowHeight / 16}rem`;
-  console.log('my', currentLvl);
+
   return rowsData ? (
     <tr>
       <td colSpan={columnsLength}>

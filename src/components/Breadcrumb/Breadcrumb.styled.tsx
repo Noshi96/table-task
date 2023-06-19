@@ -42,6 +42,7 @@ export const ButtonStyled = styled.button`
   background: transparent;
   border: none;
   color: inherit;
+  cursor: pointer;
 
   &:hover {
     color: #aaffbb;
@@ -53,5 +54,4 @@ export const ButtonStyled = styled.button`
   &:focus {
     outline: 1px solid #000000;
   }
-  cursor: pointer;
 `;
