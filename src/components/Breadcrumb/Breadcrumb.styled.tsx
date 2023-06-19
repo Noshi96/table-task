@@ -4,12 +4,12 @@ export const BreadcrumbContainerStyled = styled.div`
   position: sticky;
   top: 5rem;
   left: 0;
+  z-index: 3;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   color: #ffffff;
-  z-index: 3;
   background: #9b7cde;
 `;
 
@@ -33,6 +33,7 @@ export const LiStyled = styled.li`
     content: '▶';
     margin-left: 1rem;
   }
+
   &:last-child:after {
     content: none;
   }
@@ -47,10 +48,12 @@ export const ButtonStyled = styled.button`
   &:hover {
     color: #aaffbb;
   }
-  :focus:not(:focus-visible) {
+
+  &:focus:not(:focus-visible) {
     outline: 0;
     box-shadow: none;
   }
+
   &:focus {
     outline: 1px solid #000000;
   }

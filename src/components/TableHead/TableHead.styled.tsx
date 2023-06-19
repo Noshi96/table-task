@@ -22,6 +22,7 @@ export const TableHeadStyled = styled.thead`
   tr:first-child th:first-child {
     border-top-left-radius: 10px;
   }
+
   tr:first-child th:last-child {
     border-top-right-radius: 10px;
   }
