@@ -1,50 +1,74 @@
 import { NestedTable } from 'components';
 import { TableRowStyled, TdStyled } from 'components/TableRow/TableRow.styled';
+import { useTableController } from 'context';
 import { TableConfigModel, RowData } from 'models';
 import { useRef, useState } from 'react';
-import { bookConfig } from 'table-configs';
 
 type TableRowProps = {
   tableConfig: TableConfigModel;
   rowData: RowData;
+  currentLvl: number;
+  handleRowSelect: Function;
 } & React.HTMLProps<HTMLTableRowElement>;
 
 export const TableRow = ({
   rowData,
   tableConfig,
   className,
+  currentLvl,
+  handleRowSelect,
 }: TableRowProps) => {
   const { columns } = tableConfig;
 
   const trRef = useRef<HTMLTableRowElement>(null);
+  const [authorName, setAuthorName] = useState('');
 
-  const [showMoreInformation, setShowMoreInformation] = useState(false);
+  const { state } = useTableController();
+  const { levels } = state;
+  console.log(state);
+  console.log(levels);
+  console.log(rowData.id);
+  console.log(currentLvl);
+  const {
+    tableConfig: nestedConfig,
+    useGetDataForRows,
+    currentActiveRow,
+  } = levels[currentLvl];
+
+  const { data } = useGetDataForRows(authorName);
+  const activeRowId = rowData.id;
+
   return (
     <>
       <TableRowStyled
         onClick={() => {
-          console.log('stala ptaka');
-          setShowMoreInformation(prev => !prev);
+          setAuthorName(`${rowData.authors}`);
+          handleRowSelect({
+            lvl: currentLvl,
+            currentActiveRow: `${activeRowId}`,
+          });
         }}
         className={className}
         ref={trRef}
       >
         {columns.map(column => {
           return (
-            <TdStyled key={`${column.columnName}-td`}>
+            <TdStyled key={`${activeRowId}${column.columnName}-td`}>
               {rowData[column.columnName]}
             </TdStyled>
           );
         })}
       </TableRowStyled>
-      {showMoreInformation && (
+      {activeRowId === currentActiveRow ? (
         <NestedTable
-          tableConfig={bookConfig}
+          tableConfig={nestedConfig}
           columnsLength={tableConfig.columns.length}
-          endPoint={'elo'}
           clickedRowHeight={trRef.current?.clientHeight || 0}
+          currentLvl={currentLvl + 1}
+          rowsData={data}
+          handleRowSelect={handleRowSelect}
         />
-      )}
+      ) : null}
     </>
   );
 };

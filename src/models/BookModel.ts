@@ -1,5 +1,6 @@
 export interface BookModel {
-  printType: string;
-  language: string;
-  pageCount: number;
+  id: string;
+  authors: string;
+  title: string;
+  categories: string;
 }

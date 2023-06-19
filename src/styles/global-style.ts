@@ -53,5 +53,4 @@ export const AppStyled = styled.div`
   width: 100%;
   min-width: 768px;
   height: 100%;
-  background-color: red;
 `;

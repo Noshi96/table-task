@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import reportWebVitals from 'reportWebVitals';
 import { MainPageView } from 'pages';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'App';
+import { TableControllerProvider } from 'context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <App>
-        <MainPageView />
+        <TableControllerProvider>
+          <MainPageView />
+        </TableControllerProvider>
       </App>
     </QueryClientProvider>
   </React.StrictMode>,

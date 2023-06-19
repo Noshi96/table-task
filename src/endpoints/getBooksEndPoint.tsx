@@ -1,13 +1,9 @@
-export const getBooksEndPoint = (): URL => {
-  const booksEndPoint = new URL(
-    `${process.env.REACT_APP_PUBLIC_GOOGLE_API_ENDPOINT}`,
-  );
-  booksEndPoint.searchParams.set('q', 'car');
-  booksEndPoint.searchParams.set('filter', 'free-ebooks');
-  booksEndPoint.searchParams.set('maxResults', '15');
-  booksEndPoint.searchParams.set(
-    'key',
-    `${process.env.REACT_APP_PUBLIC_BOOKS_API_KEY}`,
-  );
-  return booksEndPoint;
+export const getBooksEndPoint = (authorName: string): string => {
+  const endpoint = `${
+    process.env.REACT_APP_PUBLIC_GOOGLE_API_ENDPOINT
+  }?q=inauthor:"${authorName.replaceAll(
+    ' ',
+    '+',
+  )}"&filter=paid-ebooks&maxResults=15&printType=books`;
+  return endpoint;
 };

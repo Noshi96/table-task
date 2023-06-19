@@ -1,19 +1,16 @@
 import { TableHead, TableRow } from 'components';
 import styled from 'styled-components';
 
-interface TableHeadProp {
+interface ITableHeadProp {
   clickedRowHeightRem: string;
 }
 
-export const TableHeadStyled = styled(TableHead)<TableHeadProp>`
+export const TableHeadStyled = styled(TableHead)<ITableHeadProp>`
   position: sticky;
-  top: calc(
-    12.5rem + ${({ clickedRowHeightRem }) => clickedRowHeightRem}
-  ); // 12.5 * lvl
+  top: calc(12.5rem + ${({ clickedRowHeightRem }) => clickedRowHeightRem});
   z-index: 1;
-  overflow: hidden;
 `;
 
-export const TableRowStyled = styled(TableRow)<TableHeadProp>`
+export const TableRowStyled = styled(TableRow)<ITableHeadProp>`
   top: calc(12.5rem + ${({ clickedRowHeightRem }) => clickedRowHeightRem});
 `;

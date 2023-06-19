@@ -9,3 +9,22 @@ export interface TableConfigModel {
 export interface RowData {
   [key: string]: React.ReactNode;
 }
+
+export interface IStateInSingleLvl {
+  lvl: number;
+  tableConfig: TableConfigModel;
+  useGetDataForRows: Function;
+  visitedNestedTable: boolean;
+  currentActiveRow: string;
+}
+
+export interface ITableControllerState {
+  levels: IStateInSingleLvl[];
+  currentClickedRows: string[];
+  currentLevel: number;
+}
+
+export interface ITableControllerDispatch {
+  type: string;
+  payload?: any;
+}
