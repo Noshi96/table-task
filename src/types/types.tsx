@@ -42,3 +42,26 @@ export interface ITableControllerDispatch {
   type: string;
   payload?: any;
 }
+
+interface ICurrentActiveRowPayload {
+  lvl: number;
+  currentActiveRow: string;
+}
+
+interface IResetRowsPayload {
+  lvl: number;
+  isRowAlreadyOpen: boolean;
+}
+
+interface ICurrentClickedRowsPayload {
+  breadcrumbValue: string;
+  lvl: number;
+}
+
+export type TableControllerActionsType =
+  | { type: 'SET_CURRENT_ACTIVE_ROW'; payload: ICurrentActiveRowPayload }
+  | {
+      type: 'SET_RESET_ACTIVE_AND_CURRENT_CLICKED_ROWS';
+      payload: IResetRowsPayload;
+    }
+  | { type: 'SET_CURRENT_CLICKED_ROWS'; payload: ICurrentClickedRowsPayload };

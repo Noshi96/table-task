@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
-import { ITableControllerDispatch, ITableControllerState } from 'types';
+import { TableControllerActionsType, ITableControllerState } from 'types';
 import {
   initialTableControllerState,
   tableControllerReducer,
@@ -27,9 +27,9 @@ const TableControllerContext = createContext({
     currentLevel: 0,
   } as ITableControllerState,
   dispatch: {
-    type: '',
-    payload: undefined,
-  } as unknown as Dispatch<ITableControllerDispatch>,
+    type: 'SET_CURRENT_ACTIVE_ROW',
+    payload: { lvl: 0, currentActiveRow: '' },
+  } as unknown as Dispatch<TableControllerActionsType>,
 });
 
 export const TableControllerProvider = ({

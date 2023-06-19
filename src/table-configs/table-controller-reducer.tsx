@@ -1,4 +1,4 @@
-import { ITableControllerDispatch, ITableControllerState } from 'types';
+import { TableControllerActionsType, ITableControllerState } from 'types';
 import { useEmpty, useGetAuthors, useGetBook, useGetBooks } from 'services';
 import { singleBookConfig } from 'table-configs';
 import { authorConfig } from './author-config';
@@ -6,7 +6,7 @@ import { bookConfig } from './book-config';
 
 export const tableControllerReducer = (
   state: ITableControllerState,
-  action: ITableControllerDispatch,
+  action: TableControllerActionsType,
 ) => {
   switch (action.type) {
     case 'SET_CURRENT_ACTIVE_ROW':
