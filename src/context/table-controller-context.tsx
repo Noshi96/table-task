@@ -13,8 +13,6 @@ const TableControllerContext = createContext({
         useGetDataForRows: () => {},
         getDataParam: '',
         breadcrumbKey: '',
-        breadcrumbValue: '',
-        visitedNestedTable: false,
         currentActiveRow: '',
         tableConfig: {
           columns: [

@@ -21,7 +21,7 @@ export const tableControllerReducer = (
             : lvl,
         ),
       };
-    case 'SET_RESET_STATES_FOR_NESTED_TABLES':
+    case 'SET_RESET_ACTIVE_AND_CURRENT_CLICKED_ROWS':
       return action.payload.isRowAlreadyOpen
         ? {
             ...state,
@@ -30,7 +30,6 @@ export const tableControllerReducer = (
                 ? {
                     ...lvl,
                     currentActiveRow: '',
-                    visitedNestedTable: false,
                   }
                 : lvl,
             ),
@@ -39,7 +38,7 @@ export const tableControllerReducer = (
             ],
           }
         : { ...state };
-    case 'SET_CLICKED_ROWS': {
+    case 'SET_CURRENT_CLICKED_ROWS': {
       const updatedClickedRows = state.currentClickedRows.slice(
         0,
         action.payload.lvl - 1,
@@ -52,18 +51,6 @@ export const tableControllerReducer = (
         ],
       };
     }
-    case 'SET_VISITED_NESTED_TABLE':
-      return {
-        ...state,
-        levels: state.levels.map(lvl =>
-          lvl.lvl === action.payload.lvl
-            ? {
-                ...lvl,
-                visitedNestedTable: action.payload.visitedNestedTable,
-              }
-            : lvl,
-        ),
-      };
     default:
       return state;
   }
@@ -75,41 +62,33 @@ export const initialTableControllerState: ITableControllerState = {
       lvl: 0,
       tableConfig: authorConfig,
       useGetDataForRows: useGetAuthors,
-      visitedNestedTable: false,
       currentActiveRow: '',
       getDataParam: '',
       breadcrumbKey: '',
-      breadcrumbValue: '',
     },
     {
       lvl: 1,
       tableConfig: bookConfig,
       useGetDataForRows: useGetBooks,
-      visitedNestedTable: false,
       currentActiveRow: '',
       getDataParam: 'authors',
       breadcrumbKey: 'authors',
-      breadcrumbValue: '',
     },
     {
       lvl: 2,
       tableConfig: singleBookConfig,
       useGetDataForRows: useGetBook,
-      visitedNestedTable: false,
       currentActiveRow: '',
       getDataParam: 'id',
       breadcrumbKey: 'title',
-      breadcrumbValue: '',
     },
     {
       lvl: 3,
       tableConfig: singleBookConfig,
       useGetDataForRows: useEmpty,
-      visitedNestedTable: false,
       currentActiveRow: '',
       getDataParam: '',
       breadcrumbKey: '',
-      breadcrumbValue: '',
     },
   ],
   currentClickedRows: [],

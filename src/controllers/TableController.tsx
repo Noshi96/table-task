@@ -20,28 +20,22 @@ export const TableController = () => {
     currentActiveRow,
     breadcrumbValue,
   }: IHandleRowSelect) => {
-    console.log(state.levels.length, 'clicable', lvl);
     if (state.levels.length - 1 < lvl) {
       return;
     }
-
     const isRowAlreadyOpen =
       state.levels[lvl].currentActiveRow === currentActiveRow;
 
     dispatch({
-      type: 'SET_CLICKED_ROWS',
+      type: 'SET_CURRENT_CLICKED_ROWS',
       payload: {
         breadcrumbValue,
         lvl,
       },
     });
     dispatch({
-      type: 'SET_RESET_STATES_FOR_NESTED_TABLES',
+      type: 'SET_RESET_ACTIVE_AND_CURRENT_CLICKED_ROWS',
       payload: { lvl, isRowAlreadyOpen },
-    });
-    dispatch({
-      type: 'SET_VISITED_NESTED_TABLE',
-      payload: { lvl, visitedNestedTable: !isRowAlreadyOpen },
     });
     dispatch({
       type: 'SET_CURRENT_ACTIVE_ROW',
@@ -54,12 +48,8 @@ export const TableController = () => {
 
   const handleBreadcrumbSelect = (lvl: number) => {
     dispatch({
-      type: 'SET_RESET_STATES_FOR_NESTED_TABLES',
+      type: 'SET_RESET_ACTIVE_AND_CURRENT_CLICKED_ROWS',
       payload: { lvl, isRowAlreadyOpen: true },
-    });
-    dispatch({
-      type: 'SET_VISITED_NESTED_TABLE',
-      payload: { lvl, visitedNestedTable: false },
     });
     dispatch({
       type: 'SET_CURRENT_ACTIVE_ROW',
