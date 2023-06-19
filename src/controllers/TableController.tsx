@@ -52,9 +52,30 @@ export const TableController = () => {
     });
   };
 
+  const handleBreadcrumbSelect = (lvl: number) => {
+    dispatch({
+      type: 'SET_RESET_STATES_FOR_NESTED_TABLES',
+      payload: { lvl, isRowAlreadyOpen: true },
+    });
+    dispatch({
+      type: 'SET_VISITED_NESTED_TABLE',
+      payload: { lvl, visitedNestedTable: false },
+    });
+    dispatch({
+      type: 'SET_CURRENT_ACTIVE_ROW',
+      payload: {
+        lvl,
+        currentActiveRow: '',
+      },
+    });
+  };
+
   return (
     <>
-      <Breadcrumb currentClickedRows={currentClickedRows} />
+      <Breadcrumb
+        currentClickedRows={currentClickedRows}
+        handleBreadcrumbSelect={handleBreadcrumbSelect}
+      />
       <Table
         rowsData={data}
         tableConfig={tableConfig}

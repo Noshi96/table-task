@@ -8,6 +8,9 @@ export const useGetBook = (isbn: string) => {
   return useQuery({
     queryKey: ['bookKey', isbn],
     queryFn: async (): Promise<RowData[]> => {
+      if (isbn === '') {
+        return [];
+      }
       const result = fetch(booksEndPoint);
       const res = await result;
       const data = await res.json().catch(() => ({}));

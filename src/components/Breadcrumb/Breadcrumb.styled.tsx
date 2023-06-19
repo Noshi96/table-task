@@ -27,7 +27,6 @@ export const BreadcrumbListStyled = styled.ul`
 export const LiStyled = styled.li`
   list-style: none;
   display: inline;
-  cursor: pointer;
 
   &:after {
     content: '▶';
@@ -36,4 +35,22 @@ export const LiStyled = styled.li`
   &:last-child:after {
     content: none;
   }
+`;
+
+export const ButtonStyled = styled.button`
+  background: transparent;
+  border: none;
+  color: inherit;
+
+  &:hover {
+    color: #aaffbb;
+  }
+  :focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+  }
+  &:focus {
+    outline: 1px solid #000000;
+  }
+  cursor: pointer;
 `;
