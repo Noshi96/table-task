@@ -1,12 +1,12 @@
 import { TableRow } from 'components';
 import { TableContainerStyled } from './Table.styled';
-import { RowData, ITableConfig } from 'types';
+import { RowData, ITableConfig, IHandleRowSelect } from 'types';
 import { TableHead } from 'components';
 
 interface ITableProps {
   rowsData: RowData[] | undefined;
   tableConfig: ITableConfig;
-  handleRowSelect: Function;
+  handleRowSelect: (params: IHandleRowSelect) => void;
 }
 
 export const Table = ({

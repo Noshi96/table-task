@@ -1,11 +1,6 @@
 import { Breadcrumb, Table } from 'components';
 import { useTableController } from 'context';
-
-interface IHandleRowSelect {
-  lvl: number;
-  currentActiveRow: string;
-  breadcrumbValue: string;
-}
+import { IHandleRowSelect } from 'types/types';
 
 export const TableController = () => {
   const { state, dispatch } = useTableController();

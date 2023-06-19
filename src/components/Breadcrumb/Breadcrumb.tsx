@@ -8,7 +8,7 @@ import {
 
 interface IBreadcrumbProps {
   currentClickedRows: string[];
-  handleBreadcrumbSelect: Function;
+  handleBreadcrumbSelect: (lvl: number) => void;
 }
 
 export const Breadcrumb = ({

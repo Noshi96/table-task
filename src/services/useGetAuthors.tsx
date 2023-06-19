@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getAuthorsEndPoint } from 'endpoints';
 import { IAuthor, RowData } from 'types';
+import { IQueryResponse } from 'types/types';
 
 export const useGetAuthors = () => {
   const authorsEndPoint = getAuthorsEndPoint();
@@ -11,7 +12,7 @@ export const useGetAuthors = () => {
       const res = await result;
       const data = await res.json().catch(() => ({}));
 
-      return data?.items.map((book: any) => {
+      return data?.items.map((book: IQueryResponse) => {
         const { volumeInfo } = book;
         const { language } = volumeInfo;
 

@@ -6,6 +6,6 @@ export type {
   RowData,
   IStateInSingleLvl,
   ITableControllerState,
-  ITableControllerDispatch,
   TableControllerActionsType,
+  IHandleRowSelect,
 } from './types';

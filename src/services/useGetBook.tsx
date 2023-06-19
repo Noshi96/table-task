@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBookEndPoint } from 'endpoints';
 import { RowData } from 'types';
+import { IQueryResponse } from 'types/types';
 
-export const useGetBook = (isbn: string) => {
-  const booksEndPoint = getBookEndPoint(isbn);
+export const useGetBook = (isbn?: string) => {
+  const booksEndPoint = getBookEndPoint(isbn || '');
 
   return useQuery({
     queryKey: ['bookKey', isbn],
@@ -16,7 +17,7 @@ export const useGetBook = (isbn: string) => {
       const data = await res.json().catch(() => ({}));
 
       return data.totalItems !== 0
-        ? data?.items.map((book: any) => {
+        ? data?.items.map((book: IQueryResponse) => {
             const { volumeInfo } = book;
             const { industryIdentifiers, publishedDate } = volumeInfo;
 

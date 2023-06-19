@@ -1,3 +1,5 @@
+import { UseQueryResult } from '@tanstack/react-query';
+
 export interface IAuthor {
   id: string;
   authors: string;
@@ -26,7 +28,7 @@ export interface RowData {
 export interface IStateInSingleLvl {
   lvl: number;
   tableConfig: ITableConfig;
-  useGetDataForRows: Function;
+  useGetDataForRows: (value?: string) => UseQueryResult<RowData[], unknown>;
   getDataParam: string;
   currentActiveRow: string;
   breadcrumbKey: string;
@@ -36,11 +38,6 @@ export interface ITableControllerState {
   levels: IStateInSingleLvl[];
   currentClickedRows: string[];
   currentLevel: number;
-}
-
-export interface ITableControllerDispatch {
-  type: string;
-  payload?: any;
 }
 
 interface ICurrentActiveRowPayload {
@@ -65,3 +62,25 @@ export type TableControllerActionsType =
       payload: IResetRowsPayload;
     }
   | { type: 'SET_CURRENT_CLICKED_ROWS'; payload: ICurrentClickedRowsPayload };
+
+export interface IQueryResponse {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors: string[];
+    publishedDate: string;
+    industryIdentifiers: [
+      {
+        identifier: string;
+      },
+    ];
+    categories: string[];
+    language: string;
+  };
+}
+
+export interface IHandleRowSelect {
+  lvl: number;
+  currentActiveRow: string;
+  breadcrumbValue: string;
+}

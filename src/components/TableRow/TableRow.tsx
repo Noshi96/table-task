@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react';
 import { NestedTable } from 'components';
 import { useTableController } from 'context';
-import { ITableConfig, RowData } from 'types';
+import { ITableConfig, RowData, IHandleRowSelect } from 'types';
 import { TableRowStyled, TdStyled } from './TableRow.styled';
 
 type TableRowProps = {
   tableConfig: ITableConfig;
   rowData: RowData;
   currentLvl: number;
-  handleRowSelect: Function;
+  handleRowSelect: (params: IHandleRowSelect) => void;
 } & React.HTMLProps<HTMLTableRowElement>;
 
 export const TableRow = ({
@@ -42,7 +42,7 @@ export const TableRow = ({
           handleRowSelect({
             lvl: currentLvl,
             currentActiveRow: `${activeRowId}`,
-            breadcrumbValue: rowData[breadcrumbKey],
+            breadcrumbValue: `${rowData[breadcrumbKey]}`,
           });
           setParam(`${rowData[getDataParam]}`);
         }}

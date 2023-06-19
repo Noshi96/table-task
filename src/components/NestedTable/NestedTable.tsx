@@ -1,5 +1,5 @@
 import { NestedTableStyled } from 'components/Table/Table.styled';
-import { RowData, ITableConfig } from 'types';
+import { RowData, ITableConfig, IHandleRowSelect } from 'types';
 import { TableHeadStyled, TableRowStyled } from './NestedTable.styled';
 
 interface INestedTableProps {
@@ -8,7 +8,7 @@ interface INestedTableProps {
   clickedRowHeight: number;
   currentLvl: number;
   rowsData: RowData[] | undefined;
-  handleRowSelect: Function;
+  handleRowSelect: (params: IHandleRowSelect) => void;
 }
 
 export const NestedTable = ({
