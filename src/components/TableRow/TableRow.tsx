@@ -1,8 +1,8 @@
+import { useRef, useState } from 'react';
 import { NestedTable } from 'components';
-import { TableRowStyled, TdStyled } from 'components/TableRow/TableRow.styled';
 import { useTableController } from 'context';
 import { TableConfigModel, RowData } from 'models';
-import { useRef, useState } from 'react';
+import { TableRowStyled, TdStyled } from './TableRow.styled';
 
 type TableRowProps = {
   tableConfig: TableConfigModel;
@@ -18,17 +18,11 @@ export const TableRow = ({
   currentLvl,
   handleRowSelect,
 }: TableRowProps) => {
-  const { columns } = tableConfig;
-
+  const [param, setParam] = useState('');
   const trRef = useRef<HTMLTableRowElement>(null);
-  const [authorName, setAuthorName] = useState('');
 
   const { state } = useTableController();
   const { levels } = state;
-  console.log(state);
-  console.log(levels);
-  console.log(rowData.id);
-  console.log(currentLvl);
   const {
     tableConfig: nestedConfig,
     useGetDataForRows,
@@ -36,10 +30,9 @@ export const TableRow = ({
     getDataParam,
     breadcrumbKey,
   } = levels[currentLvl];
-
-  const [param, setParam] = useState('');
-
   const { data } = useGetDataForRows(param);
+
+  const { columns } = tableConfig;
   const activeRowId = rowData.id;
 
   return (
@@ -54,6 +47,7 @@ export const TableRow = ({
           setParam(`${rowData[getDataParam]}`);
         }}
         className={className}
+        isActive={activeRowId === currentActiveRow}
         ref={trRef}
       >
         {columns.map(column => {

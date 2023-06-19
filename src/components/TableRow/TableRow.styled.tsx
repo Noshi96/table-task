@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const TableRowStyled = styled.tr`
+interface ITableRowIsActive {
+  isActive: boolean;
+}
+
+export const TableRowStyled = styled.tr<ITableRowIsActive>`
   position: sticky;
   top: 12.5rem;
   left: 0;
@@ -8,9 +12,11 @@ export const TableRowStyled = styled.tr`
   font-weight: 500;
   &:nth-child(2n) {
     background-color: #f6f6f6;
+    background-color: ${({ isActive }) => (isActive ? '#aaffbb' : '#f6f6f6')};
   }
   &:nth-child(2n + 1) {
     background-color: #ffffff;
+    background-color: ${({ isActive }) => (isActive ? '#aaffbb' : '#ffffff')};
   }
   cursor: pointer;
 `;
