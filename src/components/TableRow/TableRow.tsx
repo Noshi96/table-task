@@ -33,20 +33,25 @@ export const TableRow = ({
     tableConfig: nestedConfig,
     useGetDataForRows,
     currentActiveRow,
+    getDataParam,
+    breadcrumbKey,
   } = levels[currentLvl];
 
-  const { data } = useGetDataForRows(authorName);
+  const [param, setParam] = useState('');
+
+  const { data } = useGetDataForRows(param);
   const activeRowId = rowData.id;
 
   return (
     <>
       <TableRowStyled
         onClick={() => {
-          setAuthorName(`${rowData.authors}`);
           handleRowSelect({
             lvl: currentLvl,
             currentActiveRow: `${activeRowId}`,
+            breadcrumbValue: rowData[breadcrumbKey],
           });
+          setParam(`${rowData[getDataParam]}`);
         }}
         className={className}
         ref={trRef}

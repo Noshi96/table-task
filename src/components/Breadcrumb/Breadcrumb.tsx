@@ -5,15 +5,20 @@ import {
   LiStyled,
 } from './Breadcrumb.styled';
 
-export const Breadcrumb = () => {
+interface IBreadcrumbProps {
+  currentClickedRows: string[];
+}
+
+export const Breadcrumb = ({ currentClickedRows }: IBreadcrumbProps) => {
   return (
     <BreadcrumbContainerStyled>
       <h2>Nav</h2>
       <BreadcrumbNavigationStyled>
         <BreadcrumbListStyled>
           <LiStyled>{'Home'}</LiStyled>
-          <LiStyled>{'Elizabeth Kent'}</LiStyled>
-          <LiStyled>{'Flora Domestic'}</LiStyled>
+          {currentClickedRows.map(clickedRow => (
+            <LiStyled>{clickedRow}</LiStyled>
+          ))}
         </BreadcrumbListStyled>
       </BreadcrumbNavigationStyled>
     </BreadcrumbContainerStyled>

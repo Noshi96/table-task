@@ -13,15 +13,15 @@ export const useGetBooks = (authorName: string) => {
       const data = await res.json().catch(() => ({}));
 
       return data.totalItems !== 0
-        ? data?.items.map((book: any, index: number) => {
+        ? data?.items.map((book: any) => {
             const { volumeInfo } = book;
-            const { title } = volumeInfo;
+            const { title, industryIdentifiers } = volumeInfo;
 
             const categories = volumeInfo?.categories?.[0] || 'not-given';
             const authors = volumeInfo?.authors?.[0] || 'not-given';
 
             return {
-              id: book.id,
+              id: industryIdentifiers[0].identifier,
               authors,
               title,
               categories,

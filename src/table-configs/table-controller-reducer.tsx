@@ -1,5 +1,6 @@
 import { ITableControllerDispatch, ITableControllerState } from 'models';
-import { useGetAuthors, useGetBooks } from 'services';
+import { useEmpty, useGetAuthors, useGetBook, useGetBooks } from 'services';
+import { singleBookConfig } from 'table-configs';
 import { authorConfig } from './author-config';
 import { bookConfig } from './book-config';
 
@@ -20,18 +21,35 @@ export const tableControllerReducer = (
             : lvl,
         ),
       };
-    case 'SET_LEVEL':
-      return {
-        ...state,
-        currentLevel: action.payload,
-      };
+    case 'SET_RESET_STATES_FOR_NESTED_TABLES':
+      return action.payload.isRowAlreadyOpen
+        ? {
+            ...state,
+            levels: state.levels.map(lvl =>
+              lvl.lvl > action.payload.lvl
+                ? {
+                    ...lvl,
+                    currentActiveRow: '',
+                    visitedNestedTable: false,
+                  }
+                : lvl,
+            ),
+            currentClickedRows: [
+              ...state.currentClickedRows.slice(0, action.payload.lvl - 1),
+            ],
+          }
+        : { ...state };
     case 'SET_CLICKED_ROWS': {
-      if (action.payload) {
-      }
-
+      const updatedClickedRows = state.currentClickedRows.slice(
+        0,
+        action.payload.lvl - 1,
+      );
       return {
         ...state,
-        currentClickedRows: [...state.currentClickedRows, action.payload],
+        currentClickedRows: [
+          ...updatedClickedRows,
+          action.payload.breadcrumbValue,
+        ],
       };
     }
     case 'SET_VISITED_NESTED_TABLE':
@@ -51,7 +69,7 @@ export const tableControllerReducer = (
   }
 };
 
-export const initialTableControllerState = {
+export const initialTableControllerState: ITableControllerState = {
   levels: [
     {
       lvl: 0,
@@ -59,6 +77,9 @@ export const initialTableControllerState = {
       useGetDataForRows: useGetAuthors,
       visitedNestedTable: false,
       currentActiveRow: '',
+      getDataParam: '',
+      breadcrumbKey: '',
+      breadcrumbValue: '',
     },
     {
       lvl: 1,
@@ -66,27 +87,29 @@ export const initialTableControllerState = {
       useGetDataForRows: useGetBooks,
       visitedNestedTable: false,
       currentActiveRow: '',
+      getDataParam: 'authors',
+      breadcrumbKey: 'authors',
+      breadcrumbValue: '',
     },
     {
       lvl: 2,
-      tableConfig: bookConfig,
-      useGetDataForRows: useGetBooks,
+      tableConfig: singleBookConfig,
+      useGetDataForRows: useGetBook,
       visitedNestedTable: false,
       currentActiveRow: '',
+      getDataParam: 'id',
+      breadcrumbKey: 'title',
+      breadcrumbValue: '',
     },
     {
       lvl: 3,
-      tableConfig: bookConfig,
-      useGetDataForRows: useGetBooks,
+      tableConfig: singleBookConfig,
+      useGetDataForRows: useEmpty,
       visitedNestedTable: false,
       currentActiveRow: '',
-    },
-    {
-      lvl: 4,
-      tableConfig: bookConfig,
-      useGetDataForRows: useGetBooks,
-      visitedNestedTable: false,
-      currentActiveRow: '',
+      getDataParam: '',
+      breadcrumbKey: '',
+      breadcrumbValue: '',
     },
   ],
   currentClickedRows: [],

@@ -1,30 +1,44 @@
 import { Breadcrumb, Table } from 'components';
 import { useTableController } from 'context';
-import { useState } from 'react';
+
+interface IHandleRowSelect {
+  lvl: number;
+  currentActiveRow: string;
+  breadcrumbValue: string;
+}
 
 export const TableController = () => {
   const { state, dispatch } = useTableController();
 
-  const { currentLevel, levels } = state;
+  const { currentLevel, levels, currentClickedRows } = state;
   const { tableConfig, useGetDataForRows } = levels[currentLevel];
 
   const { data } = useGetDataForRows();
 
-  const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
-
   const handleRowSelect = ({
     lvl,
     currentActiveRow,
-  }: {
-    lvl: number;
-    currentActiveRow: string;
-  }) => {
+    breadcrumbValue,
+  }: IHandleRowSelect) => {
+    console.log(state.levels.length, 'clicable', lvl);
     if (state.levels.length - 1 < lvl) {
       return;
     }
-    setBreadcrumbs([...breadcrumbs, currentActiveRow]);
+
     const isRowAlreadyOpen =
       state.levels[lvl].currentActiveRow === currentActiveRow;
+
+    dispatch({
+      type: 'SET_CLICKED_ROWS',
+      payload: {
+        breadcrumbValue,
+        lvl,
+      },
+    });
+    dispatch({
+      type: 'SET_RESET_STATES_FOR_NESTED_TABLES',
+      payload: { lvl, isRowAlreadyOpen },
+    });
     dispatch({
       type: 'SET_VISITED_NESTED_TABLE',
       payload: { lvl, visitedNestedTable: !isRowAlreadyOpen },
@@ -40,7 +54,7 @@ export const TableController = () => {
 
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb currentClickedRows={currentClickedRows} />
       <Table
         rowsData={data}
         tableConfig={tableConfig}
