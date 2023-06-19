@@ -1,4 +1,4 @@
-export const getBooksEndPoint = (authorName: string): string => {
+export const getBooksEndPoint = (authorName: string): URL => {
   const booksEndPoint = new URL(`https://www.googleapis.com/books/v1/volumes`);
   booksEndPoint.searchParams.set(
     'q',
@@ -8,5 +8,5 @@ export const getBooksEndPoint = (authorName: string): string => {
   booksEndPoint.searchParams.set('maxResults', '15');
   booksEndPoint.searchParams.set('printType', 'books');
 
-  return `${booksEndPoint}`;
+  return booksEndPoint;
 };
