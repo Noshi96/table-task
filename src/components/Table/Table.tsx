@@ -1,11 +1,11 @@
 import { TableRow } from 'components';
 import { TableContainerStyled } from './Table.styled';
-import { RowData, TableConfigModel } from 'models';
+import { RowData, ITableConfig } from 'types';
 import { TableHead } from 'components';
 
 interface ITableProps {
   rowsData: RowData[] | undefined;
-  tableConfig: TableConfigModel;
+  tableConfig: ITableConfig;
   handleRowSelect: Function;
 }
 

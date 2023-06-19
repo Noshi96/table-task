@@ -1,9 +1,22 @@
-export interface ColumnModel {
+export interface IAuthor {
+  id: string;
+  authors: string;
+  language: string;
+}
+
+export interface IBook {
+  id: string;
+  authors: string;
+  title: string;
+  categories: string;
+}
+
+export interface IColumn {
   columnName: string;
 }
 
-export interface TableConfigModel {
-  columns: ColumnModel[];
+export interface ITableConfig {
+  columns: IColumn[];
 }
 
 export interface RowData {
@@ -12,7 +25,7 @@ export interface RowData {
 
 export interface IStateInSingleLvl {
   lvl: number;
-  tableConfig: TableConfigModel;
+  tableConfig: ITableConfig;
   useGetDataForRows: Function;
   getDataParam: string;
   currentActiveRow: string;

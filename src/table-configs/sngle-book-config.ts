@@ -1,6 +1,6 @@
-import { TableConfigModel } from 'models';
+import { ITableConfig } from 'types';
 
 const columnNames = ['isbn'];
-export const singleBookConfig: TableConfigModel = {
+export const singleBookConfig: ITableConfig = {
   columns: columnNames.map(column => ({ columnName: column })),
 };

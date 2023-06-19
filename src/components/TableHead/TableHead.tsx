@@ -1,9 +1,9 @@
-import { ColumnModel } from 'models';
+import { IColumn } from 'types';
 import { columnsMapper } from 'utils';
 import { TableHeadStyled } from './TableHead.styled';
 
 type TableHeadProps = {
-  columns: ColumnModel[];
+  columns: IColumn[];
 } & React.HTMLProps<HTMLTableElement>;
 
 export const TableHead = ({ columns, className }: TableHeadProps) => {

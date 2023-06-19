@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import { NestedTable } from 'components';
 import { useTableController } from 'context';
-import { TableConfigModel, RowData } from 'models';
+import { ITableConfig, RowData } from 'types';
 import { TableRowStyled, TdStyled } from './TableRow.styled';
 
 type TableRowProps = {
-  tableConfig: TableConfigModel;
+  tableConfig: ITableConfig;
   rowData: RowData;
   currentLvl: number;
   handleRowSelect: Function;

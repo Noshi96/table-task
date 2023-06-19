@@ -1,6 +1,6 @@
-import { TableConfigModel } from 'models';
+import { ITableConfig } from 'types';
 
 const columnNames = ['id', 'authors', 'language'];
-export const authorConfig: TableConfigModel = {
+export const authorConfig: ITableConfig = {
   columns: columnNames.map(column => ({ columnName: column })),
 };

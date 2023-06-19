@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getAuthorsEndPoint } from 'endpoints';
-import { AuthorModel, RowData } from 'models';
+import { IAuthor, RowData } from 'types';
 
 export const useGetAuthors = () => {
   const authorsEndPoint = getAuthorsEndPoint();
@@ -21,7 +21,7 @@ export const useGetAuthors = () => {
           id: `${book.id}bb`,
           authors,
           language,
-        } as AuthorModel;
+        } as IAuthor;
       });
     },
   });

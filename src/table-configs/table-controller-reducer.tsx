@@ -1,4 +1,4 @@
-import { ITableControllerDispatch, ITableControllerState } from 'models';
+import { ITableControllerDispatch, ITableControllerState } from 'types';
 import { useEmpty, useGetAuthors, useGetBook, useGetBooks } from 'services';
 import { singleBookConfig } from 'table-configs';
 import { authorConfig } from './author-config';

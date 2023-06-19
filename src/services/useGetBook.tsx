@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBookEndPoint } from 'endpoints';
-import { RowData } from 'models';
+import { RowData } from 'types';
 
 export const useGetBook = (isbn: string) => {
   const booksEndPoint = getBookEndPoint(isbn);

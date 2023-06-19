@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBooksEndPoint } from 'endpoints';
-import { BookModel, RowData } from 'models';
+import { IBook, RowData } from 'types';
 
 export const useGetBooks = (authorName: string) => {
   const booksEndPoint = getBooksEndPoint(authorName);
@@ -25,7 +25,7 @@ export const useGetBooks = (authorName: string) => {
               authors,
               title,
               categories,
-            } as BookModel;
+            } as IBook;
           })
         : [];
     },

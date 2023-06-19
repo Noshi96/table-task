@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
-import { ITableControllerDispatch, ITableControllerState } from 'models';
+import { ITableControllerDispatch, ITableControllerState } from 'types';
 import {
   initialTableControllerState,
   tableControllerReducer,

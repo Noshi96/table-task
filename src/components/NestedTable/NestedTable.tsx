@@ -1,9 +1,9 @@
 import { NestedTableStyled } from 'components/Table/Table.styled';
-import { RowData, TableConfigModel } from 'models';
+import { RowData, ITableConfig } from 'types';
 import { TableHeadStyled, TableRowStyled } from './NestedTable.styled';
 
 interface INestedTableProps {
-  tableConfig: TableConfigModel;
+  tableConfig: ITableConfig;
   columnsLength: number;
   clickedRowHeight: number;
   currentLvl: number;
